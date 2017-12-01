@@ -1,7 +1,7 @@
 class Guest
 
 attr_reader :name, :favourite_song, :money
-attr_writer :favourite_song
+
 
   def initialize(name, money, favourite_song='')
     @name = name
