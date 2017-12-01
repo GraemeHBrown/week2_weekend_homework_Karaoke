@@ -8,6 +8,8 @@ class TestRoom < MiniTest::Test
   def setup
     @room = Room.new('Room 1', 20)
     @guest1 = Guest.new('Fred', 15.00)
+    @room2 = Room.new('Room 1', 20)
+    @room2.check_in(@guest1)
   end
 
   def test_room_has_name()
@@ -43,6 +45,16 @@ class TestRoom < MiniTest::Test
     assert_equal(0, @room.guest_count())
   end
 
+  def test_check_out__decreases_guest_count()
+    @room.check_out(@guest1)
+    count_after_check_out = @room.guest_count
+    assert_equal(0, count_after_check_out)
+  end
 
+  def test_check_out__guests_doesnt_contain_guest_checked_out()
+    assert_equal(true, @room2.guests().include?(@guest1))
+    @room2.check_out(@guest1)
+    assert_equal(false, @room2.guests().include?(@guest1))
+  end
 
 end
