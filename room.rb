@@ -2,6 +2,7 @@ class Room
 
 attr_reader :name, :capacity, :guests, :songs
 attr_writer :capacity
+
 def initialize(name, capacity)
   @name = name
   @capacity = capacity.to_i
