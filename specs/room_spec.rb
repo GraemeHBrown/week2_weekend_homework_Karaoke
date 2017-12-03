@@ -8,11 +8,14 @@ class TestRoom < MiniTest::Test
 
   def setup
     @room = Room.new('Room 1', 20)
-    @guest1 = Guest.new('Fred', 15.00)
-    @room2 = Room.new('Room 1', 1)
+
+    @guest1 = Guest.new('Fred', 15.00, 'Yellow Submarine')
+    @room2 = Room.new('Room 2', 1)
     @room2.check_in(@guest1)
     @room3 = Room.new('Room 3', 20)
+    @room4 = Room.new('Room 4', 20)
     @room3.check_in(@guest1)
+    @room4.check_in(@guest1)
     @song1 = Song.new('Yellow Submarine', 'Beatles')
   end
 
@@ -74,5 +77,6 @@ class TestRoom < MiniTest::Test
   def test_room_with_capacity_returns_false_for_room_full?()
     assert_equal(false, @room3.room_full?())
   end
+
 
 end

@@ -33,4 +33,10 @@ def room_full?()
   return false
 end
 
+def play_songs()
+  for guest in @guests
+    guest.guest_cheers_when_favourite_song_is_played(@songs)
+  end
+end
+
 end

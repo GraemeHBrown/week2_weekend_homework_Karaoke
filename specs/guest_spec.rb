@@ -1,13 +1,15 @@
 require('minitest/autorun')
 require('minitest/rg')
 require_relative('../guest')
+require_relative('../song')
 
 class TestGuest < MiniTest::Test
 
   def setup
     @guest = Guest.new('Fred', 20.00, 'Yellow Submarine')
-    # @guest.favourite_song='Yellow Submarine'
     @guest2 = Guest.new('Joe', 20.00)
+    @song1 = Song.new('Yellow Submarine', 'Beatles')
+    @songs = [@song1]
   end
 
   def test_guest_name()
@@ -38,6 +40,10 @@ class TestGuest < MiniTest::Test
     @guest.remove_money(5.00)
     after_amount = @guest.money()
     assert_equal(before_amount-5.00, after_amount)
+  end
+
+  def test_guest_cheers_when_favourite_song_is_played()
+    assert_equal('Whooo!', @guest.guest_cheers_when_favourite_song_is_played(@songs))
   end
 
 
