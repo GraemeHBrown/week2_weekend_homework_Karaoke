@@ -1,3 +1,5 @@
+
+
 class KaraokeBar
 
 attr_reader :name, :rooms, :entry_fee, :number_of_rooms,
@@ -18,17 +20,37 @@ attr_reader :name, :rooms, :entry_fee, :number_of_rooms,
     for room in all_rooms
       venue_size += room.capacity()
     end
-
     @venue_capacity = venue_size
   end
 
   def admit_guest_to_bar(guest_to_admit)
     calculate_venue_capacity(@rooms)
-    if @guest_count < @venue_capacity
+    if @guest_count < @venue_capacity && has_entry_fee?(guest_to_admit)
+      room_with_space = find_room_with_space(@rooms)
+      room_with_space.check_in(guest_to_admit)
+      guest_to_admit.remove_money(@entry_fee)
       @guest_count += 1
     else
-      return "Sorry bar is full.  No further guests can be admitted."
-    end  
+      return "Sorry guest cannot be admitted."
+    end
   end
+
+  def find_room_with_space(rooms)
+    for room in rooms
+      if !room.room_full?()
+        return room
+      end
+    end
+    return nil
+  end
+
+  def has_entry_fee?(guest)
+    if guest.money() >= @entry_fee
+      return true
+    end
+    return false
+  end
+
+
 
 end

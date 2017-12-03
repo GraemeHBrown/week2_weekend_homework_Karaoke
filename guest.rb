@@ -5,7 +5,7 @@ attr_reader :name, :favourite_song, :money
 
   def initialize(name, money, favourite_song='')
     @name = name
-    @money = money
+    @money = money.to_f
     @favourite_song = favourite_song
   end
 
