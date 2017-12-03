@@ -37,5 +37,18 @@ def test_venue_capacity()
   assert_equal(100, @bar.venue_capacity())
 end
 
+def test_making_change_to_room_size_affects_overall_bar_capacity()
+  before_size = @bar.calculate_venue_capacity(@rooms)
+  assert_equal(before_size, @bar.venue_capacity())
+  amount_to_reduce = 5
+  @room1.capacity -= amount_to_reduce
+  after_size = @bar.calculate_venue_capacity(@rooms)
+  assert_equal(before_size-amount_to_reduce, after_size)
+end
+
+def test_initial_guest_count_is_0()
+  assert_equal(0, @bar.guest_count())
+end
+
 
 end
