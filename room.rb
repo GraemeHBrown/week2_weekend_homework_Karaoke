@@ -26,4 +26,11 @@ def add_song(song_to_add)
   @songs.push(song_to_add)
 end
 
+def room_full?()
+  if guest_count() >= @capacity
+    return true
+  end
+  return false
+end
+
 end

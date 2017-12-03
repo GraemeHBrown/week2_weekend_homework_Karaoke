@@ -40,4 +40,6 @@ class TestGuest < MiniTest::Test
     assert_equal(before_amount-5.00, after_amount)
   end
 
+
+
 end
