@@ -25,5 +25,4 @@ def add_song(song_to_add)
   @songs.push(song_to_add)
 end
 
-
 end

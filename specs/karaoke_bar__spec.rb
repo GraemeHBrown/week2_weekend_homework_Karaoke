@@ -5,7 +5,6 @@ require_relative('../karaoke_bar')
 
 class TestKaraokeBar < MiniTest::Test
 
-ENTRY_FEE = 15.00
 
   def setup
     @room1 = Room.new('Room 1', 20)
@@ -25,6 +24,13 @@ def test_bar_has_rooms()
   assert_equal(@bar.number_of_rooms, @bar.rooms().size())
 end
 
+def test_bar_has_entry_fee()
+  assert_equal(15.00, @bar.entry_fee())
+end
+
+def test_bar_has_room_count()
+  assert_equal(5, @bar.number_of_rooms())
+end
 
 
 end
